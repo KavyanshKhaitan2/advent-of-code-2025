@@ -15,10 +15,10 @@ invalid_sum = 0
 for range_start, range_end in inp:
     for id_to_check in range(range_start, range_end+1):
         str_id = str(id_to_check)
-        l = len(str_id)
-        if l % 2 != 0:
+        length = len(str_id)
+        if length % 2 != 0:
             continue
-        if str_id[:l//2] == str_id[l//2:]:
+        if str_id[:length//2] == str_id[length//2:]:
             invalid_count += 1
             invalid_sum += id_to_check
 
