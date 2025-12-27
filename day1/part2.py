@@ -1,7 +1,6 @@
 from pathlib import Path
 import time
 
-
 start_time = time.perf_counter()
 
 try:
@@ -18,16 +17,16 @@ for instruction in inp:
     direction = instruction[0]
     turns = int(instruction[1:])
     
-    # Make turns negative if direction is 'L'
-    if direction == 'L':
-        turns = -turns
+    # Turn negative if direction is left.
+    negative = direction == 'L'
     
-    dial_position += turns # Change the direction of the dial according to number of turns.
-    dial_position %= 100 # The dial can roll over (in both directions), mod is a mathematical way of doing it.
+    for _ in range(turns):
+        dial_position += -1 if negative else 1
+        dial_position %= 100
 
-    # If dial position is 0, increment the passcode
-    if dial_position == 0:
-        passcode += 1
+        # If dial position is 0, increment the passcode
+        if dial_position == 0:
+            passcode += 1
 
 end_time = time.perf_counter()
 
